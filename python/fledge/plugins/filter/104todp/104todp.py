@@ -7,6 +7,7 @@
 """ Plugin module that can be used to convert IEC 104 asdu object to simple datapoint"""
 
 import logging
+import copy
 
 from fledge.common import logger
 from fledge.plugins.common import utils
