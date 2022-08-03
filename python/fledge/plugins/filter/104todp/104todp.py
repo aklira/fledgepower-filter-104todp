@@ -4,10 +4,8 @@
 # See: http://fledge-iot.readthedocs.io
 # FLEDGE_END
 
-""" Plugin module that can be used to modify the name of an asset, datapoint or both """
+""" Plugin module that can be used to convert IEC 104 asdu object to simple datapoint"""
 
-import re
-import copy
 import logging
 
 from fledge.common import logger
