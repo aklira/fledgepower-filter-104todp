@@ -18,11 +18,11 @@ __license__ = "Apache 2.0"
 
 _LOGGER = logger.setup(__name__, level=logging.INFO)
 
-PLUGIN_NAME = "rename"
+PLUGIN_NAME = "104todp"
 
 _DEFAULT_CONFIG = {
     'plugin': {
-        'description': 'Filter that modify the name of an asset, datapoint or both',
+        'description': 'Filter used to convert IEC 104 asdu object to simple datapoint',
         'type': 'string',
         'default': PLUGIN_NAME,
         'readonly': 'true'
