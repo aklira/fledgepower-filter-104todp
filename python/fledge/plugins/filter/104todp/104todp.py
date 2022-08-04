@@ -133,7 +133,7 @@ def convert_to_dp(reading):
     """
     _LOGGER.debug("reading {}".format(reading))
 
-    do_json = json.loads(reading['reading']['data_object'])
+    do_json = json.loads(reading['readings']['data_object'])
 
     new_dict = {
         'asset': reading['asset'],
