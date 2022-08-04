@@ -127,12 +127,12 @@ def convert_to_dp(handle, reading):
     Args:
         reading:       A reading object
     Returns:
-        dict:          A processed dictionary
+        new_dict:          A processed dictionary
     """
     _LOGGER.debug("reading {}".format(reading))
 
     new_dict = {
-        'asset': "{}{}".format(handle['assetNamePrefix']['value'], "asdu_io_val"),
+        'asset': reading['assetName'],
         'timestamp': utils.local_timestamp(),
         'readings': {"asdu_io_val": reading['data_object']['do_value']}
     }
