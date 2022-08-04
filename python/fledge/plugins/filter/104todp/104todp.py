@@ -135,7 +135,7 @@ def convert_to_dp(handle, reading):
     new_dict = {
         'asset': reading['asset'],
         'timestamp': utils.local_timestamp(),
-        'readings': {"asdu_io_val": reading['do_value']}
+        'readings': {"asdu_io_val": reading['readings']['data_object']['do_value']}
     }
 
     '''new_dict = {
