@@ -8,7 +8,7 @@
 
 import logging
 import copy
-import random
+import json
 
 from fledge.common import logger
 from fledge.plugins.common import utils
@@ -115,7 +115,8 @@ def plugin_ingest(handle, data):
     # Filter is enabled: compute for each reading
     processed_data = []
     for element in data:
-        processed_data.append(convert_to_dp(handle, element))
+        _LOGGER.debug("element {}".format(element))
+        processed_data.append(convert_to_dp(element))
     _LOGGER.debug("processed data {}".format(processed_data))
     # Pass data onwards
     filter_ingest.filter_ingest_callback(handle['callback'],  handle['ingestRef'], processed_data)
@@ -123,7 +124,7 @@ def plugin_ingest(handle, data):
     _LOGGER.debug("{} filter ingest done".format(PLUGIN_NAME))
 
 
-def convert_to_dp(handle, reading):
+def convert_to_dp(reading):
     """ convert iec 104 data object to a simple datapoint
     Args:
         reading:       A reading object
@@ -132,10 +133,12 @@ def convert_to_dp(handle, reading):
     """
     _LOGGER.debug("reading {}".format(reading))
 
+    do_json = json.loads(reading['reading']['data_object'])
+
     new_dict = {
         'asset': reading['asset'],
         'timestamp': utils.local_timestamp(),
-        'readings': {"asdu_io_val": reading['readings']['data_object']['do_value']}
+        'readings': {"asdu_io_val": do_json['do_value']}
     }
 
     '''new_dict = {
