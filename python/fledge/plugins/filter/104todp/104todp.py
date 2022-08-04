@@ -135,13 +135,13 @@ def convert_to_dp(handle, reading):
     '''new_dict = {
         'asset': reading['asset'],
         'timestamp': utils.local_timestamp(),
-        'readings': {"asdu_io_val": reading['data_object']['do_value']}
+        'readings': {"asdu_io_val": reading['do_value']}
     }'''
 
-    new_dict = {
+    '''new_dict = {
         'asset': reading['asset'],
         'timestamp': utils.local_timestamp(),
         'readings': {"asdu_io_val": random.random()}
-    }
+    }'''
 
     return new_dict
