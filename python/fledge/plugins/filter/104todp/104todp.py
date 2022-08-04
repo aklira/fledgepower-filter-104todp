@@ -114,7 +114,7 @@ def plugin_ingest(handle, data):
     # Filter is enabled: compute for each reading
     processed_data = []
     for element in data:
-        processed_data.append(convert_to_dp(element))
+        processed_data.append(convert_to_dp(handle, element))
     _LOGGER.debug("processed data {}".format(processed_data))
     # Pass data onwards
     filter_ingest.filter_ingest_callback(handle['callback'],  handle['ingestRef'], processed_data)
@@ -122,19 +122,19 @@ def plugin_ingest(handle, data):
     _LOGGER.debug("{} filter ingest done".format(PLUGIN_NAME))
 
 
-    def convert_to_dp(reading):
-        """ convert iec 104 data object to a simple datapoint
-        Args:
-            reading:       A reading object
-        Returns:
-            dict:          A processed dictionary
-        """
-        _LOGGER.debug("reading {}".format(reading))
+def convert_to_dp(handle, reading):
+    """ convert iec 104 data object to a simple datapoint
+    Args:
+        reading:       A reading object
+    Returns:
+        dict:          A processed dictionary
+    """
+    _LOGGER.debug("reading {}".format(reading))
 
-        new_dict = {
-            'asset': "{}{}".format(handle['assetNamePrefix']['value'], "asdu_io_val"),
-            'timestamp': utils.local_timestamp(),
-            'readings': {"asdu_io_val": reading['data_object']['do_value']}
-        }
+    new_dict = {
+        'asset': "{}{}".format(handle['assetNamePrefix']['value'], "asdu_io_val"),
+        'timestamp': utils.local_timestamp(),
+        'readings': {"asdu_io_val": reading['data_object']['do_value']}
+    }
 
-        return new_dict
+    return new_dict
