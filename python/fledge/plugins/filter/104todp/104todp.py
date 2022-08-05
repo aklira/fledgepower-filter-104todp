@@ -8,6 +8,7 @@
 
 import logging
 import copy
+import random
 
 from fledge.common import logger
 from fledge.plugins.common import utils
@@ -134,16 +135,18 @@ def convert_to_dp(reading):
 
     do_json = reading['readings']['data_object']
 
-    new_dict = {
-        'asset': reading['asset'],
-        'timestamp': utils.local_timestamp(),
-        'readings': {"asdu_io_val": do_json['do_value']}
-    }
+    _LOGGER.debug("data object {}".format(do_json))
 
     '''new_dict = {
         'asset': reading['asset'],
         'timestamp': utils.local_timestamp(),
-        'readings': {"asdu_io_val": random.random()}
+        'readings': {"asdu_io_val": do_json['do_value']}
     }'''
+
+    new_dict = {
+        'asset': reading['asset'],
+        'timestamp': utils.local_timestamp(),
+        'readings': {"asdu_io_val": random.random()}
+    }
 
     return new_dict
