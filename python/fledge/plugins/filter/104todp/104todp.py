@@ -8,7 +8,6 @@
 
 import logging
 import copy
-import json
 
 from fledge.common import logger
 from fledge.plugins.common import utils
@@ -133,7 +132,7 @@ def convert_to_dp(reading):
     """
     _LOGGER.debug("reading {}".format(reading))
 
-    do_json = json.loads(reading['readings']['data_object'])
+    do_json = reading['readings']['data_object']
 
     new_dict = {
         'asset': reading['asset'],
