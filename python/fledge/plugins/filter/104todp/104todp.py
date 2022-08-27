@@ -137,16 +137,16 @@ def convert_to_dp(reading):
 
     _LOGGER.debug("data object {}".format(do_json))
 
-    '''new_dict = {
-        'asset': reading['asset'],
-        'timestamp': utils.local_timestamp(),
-        'readings': {"asdu_io_val": do_json['do_value']}
-    }'''
-
     new_dict = {
         'asset': reading['asset'],
         'timestamp': utils.local_timestamp(),
-        'readings': {"asdu_io_val": random.random()}
+        'readings': {"asdu_io_val": do_json['do_value']}
     }
+
+    '''new_dict = {
+        'asset': reading['asset'],
+        'timestamp': utils.local_timestamp(),
+        'readings': {"asdu_io_val": random.random()}
+    }'''
 
     return new_dict
